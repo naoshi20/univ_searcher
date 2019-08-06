@@ -44,9 +44,9 @@ for tr in trs1[83:41]:
             try:
                 x = li.getText('li')
                 xlist = x.split('li')
-                y = xlist[0] + '学'
-                z = xlist[1][1:-1] + '学部'
-                parms['destination'] = y + ' ' + z
+                univ = xlist[0] + '学'
+                department = xlist[1][1:-1] + '学部'
+                parms['destination'] = univ + ' ' + department
                 url = serviceurl + urllib.parse.urlencode(parms)
                 uh = urllib.request.urlopen(url, context=ctx)
                 data = uh.read().decode()
@@ -62,12 +62,12 @@ for tr in trs1[83:41]:
                 except:
                     print(json_error)
             except:
-                y = '?'
-                z = '?'
+                univ = '?'
+                department = '?'
                 distance ='?'
                 time = '?'
             cur.execute('''INSERT OR IGNORE INTO Univ (deviation, univ, department, distance, time)
-                    VALUES ( ?, ?, ?, ?, ? )''', ( dev, y, z, distance, time ) )
+                    VALUES ( ?, ?, ?, ?, ? )''', ( dev, univ, department, distance, time ) )
             print(next)
 conn.commit()
 
