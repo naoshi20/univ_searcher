@@ -3,12 +3,7 @@ from bs4 import BeautifulSoup
 import urllib.request, urllib.parse, urllib.error
 import json
 import ssl
-import math
-import csv
-import numpy as np
-import datetime
 import sqlite3
-import os,csv
 
 #Connecting to the file in which we want to store our db
 conn = sqlite3.connect('direct_ver.sqlite')
@@ -35,11 +30,8 @@ trs1 = soup1.select("tr")
 parms = dict()
 parms['origin'] = input('住所を入力してください：')
 parms['key'] = api_key
-max = 52
-min = 41
-start = 83 - (max-1)
-end = 83 - (min-2)
-for tr in trs1[start:end]:
+
+for tr in trs1[83:41]:
     ps = tr.select('p') #list-type
     lilist = tr.select('tr td ul li ul li')
     for ptag in ps:
